@@ -7,24 +7,50 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            Node n1 = new Node(1);
-            Node n2 = new Node(2);
-            Node n3 = new Node(3);
-            Node n4 = new Node(4);
-            Node n5 = new Node(5);
-            Node n6 = new Node(6);
-            Node n7 = new Node(7);
+            
+            //PARTE 2 (CREAR ESTRUCTURA DE ÁRBOL GENEALÓGICO)
+            Person uno = new Person("Gaston",78);
+            Person dos =  new Person("Pepe",57);
+            Person tres =  new Person("Maria",56);
+            Person cuatro =  new Person("Jose",34);
+            Person cinco =  new Person("Josefina",35);
+            Person seis =  new Person("Gaspar",30);
+            Person siete = new Person("Pedro",12);
+            Person ocho = new Person("Matias",8);
 
-            n1.AddChildren(n2);
-            n1.AddChildren(n3);
+            Node Gaston = new Node(uno);
+            Node Pepe = new Node(dos);
+            Node Maria = new Node(tres);
+            Node Jose = new Node(cuatro);
+            Node Josefina = new Node(cinco);
+            Node Gaspar = new Node(seis);
+            Node Pedro = new Node(siete);
+            Node Matias = new Node(ocho);
 
-            n2.AddChildren(n4);
-            n2.AddChildren(n5);
+            //ABUELO
+            Gaston.AddChildren(Pepe);
+            Gaston.AddChildren(Maria);
 
-            n3.AddChildren(n6);
-            n3.AddChildren(n7);
+            //HIJOS
+            Maria.AddChildren(Josefina);
+            Pepe.AddChildren(Jose);
+            Pepe.AddChildren(Gaspar);
 
-            // visitar el árbol aquí
+            //NIETOS
+            Josefina.AddChildren(Pedro);
+            Jose.AddChildren(Matias);
+
+            //Parte 3 (VISITADOR DE EDADES)
+            var edades = new Edades();
+            Gaston.Accept(edades);
+
+            //Parte 4 (VISITADOR DE HIJO MAS GRANDE)
+            var hijomasgrande = new HijoMasGrande();
+            Gaston.Accept(hijomasgrande);
+
+            //Parte 4 (VISITADOR DE NOMBRE MAS LARGO)
+            var nombrelargo = new NombreLargo();
+            Gaston.Accept(nombrelargo);
         }
     }
 }
